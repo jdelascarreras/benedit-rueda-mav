@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rueda MAV — Benedit Bursátil S.A.</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -36,7 +37,11 @@ main{flex:1;background:#000;}
 .tab-pane{display:none;padding:32px 40px 56px;background:#000;}
 .tab-pane.active{display:block;}
 
-.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.kpi-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:36px;}
+.kpi-scroll::-webkit-scrollbar{height:4px;}
+.kpi-scroll::-webkit-scrollbar-track{background:var(--surface);}
+.kpi-scroll::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;min-width:480px;}
 .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 22px 16px;position:relative;overflow:hidden;}
 .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
 .kpi-card.red::before{background:linear-gradient(90deg,var(--crimson3),transparent);}
@@ -165,8 +170,8 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
   .kpi-value{font-size:1.1rem;}
   .kpi-card{padding:14px 12px 12px;}
   .ops-filter-bar{flex-wrap:wrap;}
-  .ops-count{margin-left:0;}
-}
+  a[href^="tel"]{pointer-events:none;color:inherit!important;text-decoration:none!important;}
+  * {-webkit-touch-callout:none;}
 </style>
 </head>
 <body>
@@ -195,6 +200,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 
 <!-- TAB RESUMEN -->
 <div id="tab-resumen" class="tab-pane active">
+  <div class="kpi-scroll">
   <div class="kpi-row">
     <div class="kpi-card red">
       <div class="kpi-label">Monto Total · Pesos</div>
@@ -212,6 +218,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
       <div class="kpi-sub">Subastas concretadas</div>
     </div>
   </div>
+  </div><!-- /kpi-scroll -->
 
   <div class="moneda-section">
     <div class="moneda-header">
